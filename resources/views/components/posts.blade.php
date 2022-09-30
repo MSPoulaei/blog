@@ -24,6 +24,10 @@
                 <x-post-card-small :post="$post" />
             </div>
         @endforeach
-
+    <div class="col-lg-12 mt-4">
+        <div class="d-flex justify-content-center">
+            {{$posts->appends(request()->except('page'))->links()}}
+        </div>
+    </div>
     @endif
 </div>

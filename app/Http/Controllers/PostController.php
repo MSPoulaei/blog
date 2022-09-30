@@ -10,17 +10,20 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view("posts",["posts"=>Post::with("category","author")->get(),
+        return view("posts",["posts"=>Post::with("category","author")->paginate(),
             "headerPosts"=>PostRepository::getHeader()
             ]);
     }
     public function post(Post $post)
     {
+        $post->view+=1;
+        $post->update();
         return view("post",["post"=>$post/*->load(["category","author"])*/]);
     }
 
-    public function search(string $q)
+    public function search(Request $request)
     {
-//        return view("category",["posts"=>Post::query()-> get()])
+        $q=$request->input("q");
+        return view("category",["posts"=>PostRepository::search($q),"title"=>"Search:$q"]);
     }
 }

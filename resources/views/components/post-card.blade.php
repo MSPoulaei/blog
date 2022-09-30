@@ -11,7 +11,7 @@
                 <a class="text-body" href=""><small>{{$post->published_at->diffForHumans()}}</small></a>
 {{--                Jan 01, 2045--}}
             </div>
-            <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">{{$post->title}}</a>
+            <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="/posts/{{$post->slug}}">{{$post->title}}</a>
             <p class="m-0">{{$post->description}}</p>
         </div>
         <div class="d-flex justify-content-between bg-white border border-top-0 p-4">

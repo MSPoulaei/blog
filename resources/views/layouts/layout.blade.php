@@ -23,6 +23,42 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+    <style>
+        /* The alert message box */
+        .alert {
+            position: fixed;
+            right: 1rem;
+            bottom: 1.5rem;
+            padding: 20px;
+            background-color: #f44336; /* Red */
+            color: white;
+            margin-bottom: 15px;
+            opacity: 1;
+            transition: opacity 0.6s; /* 600ms to fade out */
+            z-index: 100;
+        }
+
+        .alert.success {
+            background-color: #04AA6D;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,8 +69,8 @@
             <nav class="navbar navbar-expand-sm bg-dark p-0">
                 <ul class="navbar-nav ml-n2">
                     <li class="nav-item border-right border-secondary">
-                        <a class="nav-link text-body small" >{{ $date->format("l, F j, Y") }}</a>
-{{--                        Monday, January 1, 2045--}}
+                        <a class="nav-link text-body small">{{ $date->format("l, F j, Y") }}</a>
+                        {{--                        Monday, January 1, 2045--}}
                     </li>
                     <li class="nav-item border-right border-secondary">
                         <a class="nav-link text-body small" href="#">Advertise</a>
@@ -51,24 +87,39 @@
         <div class="col-lg-3 text-right d-none d-md-block">
             <nav class="navbar navbar-expand-sm bg-dark p-0">
                 <ul class="navbar-nav ml-auto mr-n2">
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-twitter"></small></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-facebook-f"></small></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-linkedin-in"></small></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-instagram"></small></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-google-plus-g"></small></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-body" href="#"><small class="fab fa-youtube"></small></a>
-                    </li>
+                    <div class=" ml-auto mr-3 d-lg-flex" style="gap:1rem; align-items: center">
+                        @auth
+                            <div style="display: flex; gap: 1rem; align-items: center; flex-shrink: 1">
+                                <span>Hello {{auth()->user()->name}}!</span>
+                                <a href="/dashboard">Dashboard</a>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button class="btn btn-link" type="submit">Logout</button>
+                                </form>
+                            </div>
+                        @else
+                            <a href="/login">Login</a>
+                            <a href="/register">Register</a>
+                        @endauth
+                    </div>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-twitter"></small></a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-facebook-f"></small></a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-linkedin-in"></small></a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-instagram"></small></a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-google-plus-g"></small></a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-youtube"></small></a>--}}
+{{--                    </li>--}}
                 </ul>
             </nav>
         </div>
@@ -76,12 +127,13 @@
     <div class="row align-items-center bg-white py-3 px-lg-5">
         <div class="col-lg-4">
             <a href="/" class="navbar-brand p-0 d-none d-lg-block">
-                <h1 class="m-0 display-4 text-uppercase text-primary">MSP<span class="text-secondary font-weight-normal">News</span></h1>
+                <h1 class="m-0 display-4 text-uppercase text-primary">MSP<span
+                        class="text-secondary font-weight-normal">News</span></h1>
             </a>
         </div>
-{{--        <div class="col-lg-8 text-center text-lg-right">--}}
-{{--            <a href="https://htmlcodex.com"><img class="img-fluid" src="/img/ads-728x90.png" alt=""></a>--}}
-{{--        </div>--}}
+        {{--        <div class="col-lg-8 text-center text-lg-right">--}}
+        {{--            <a href="https://htmlcodex.com"><img class="img-fluid" src="/img/ads-728x90.png" alt=""></a>--}}
+        {{--        </div>--}}
     </div>
 </div>
 <!-- Topbar End -->
@@ -92,7 +144,8 @@
 <div class="container-fluid p-0">
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
         <a href="/" class="navbar-brand d-block d-lg-none">
-            <h1 class="m-0 display-4 text-uppercase text-primary">MSP<span class="text-white font-weight-normal">News</span></h1>
+            <h1 class="m-0 display-4 text-uppercase text-primary">MSP<span
+                    class="text-white font-weight-normal">News</span></h1>
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -100,32 +153,48 @@
         <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
                 <a href="/" class="nav-item nav-link {{request()->getRequestUri()==="/" ? "active":""}}">Home</a>
-{{--                <a href="category.html" class="nav-item nav-link">Category</a>--}}
-{{--                <a href="single.html" class="nav-item nav-link">Single News</a>--}}
+                {{--                <a href="category.html" class="nav-item nav-link">Category</a>--}}
+                {{--                <a href="single.html" class="nav-item nav-link">Single News</a>--}}
 
                 <div class="nav-item dropdown">
-                    <a href="/" class="nav-link dropdown-toggle {{request()->route()->named("category") ? "active":""}}" data-toggle="dropdown">Categories</a>
+                    <a href="/" class="nav-link dropdown-toggle {{request()->route()->named("category") ? "active":""}}"
+                       data-toggle="dropdown">Categories</a>
                     <div class="dropdown-menu rounded-0 m-0" style="height: 200px;overflow: scroll">
 
                         @foreach($categories as $category)
-                            <a href="/categories/{{$category->slug}}" class="dropdown-item {{request()->getRequestUri() ==="/categories/$category->slug" ? "active":""}}">{{$category->name}}</a>
+                            <a href="/categories/{{$category->slug}}"
+                               class="dropdown-item {{request()->getRequestUri() ==="/categories/$category->slug" ? "active":""}}">{{$category->name}}</a>
                         @endforeach
-{{--                        <a href="#" class="dropdown-item">Menu item 2</a>--}}
-{{--                        <a href="#" class="dropdown-item">Menu item 3</a>--}}
+                        {{--                        <a href="#" class="dropdown-item">Menu item 2</a>--}}
+                        {{--                        <a href="#" class="dropdown-item">Menu item 3</a>--}}
                     </div>
                 </div>
                 <a href="/contact" class="nav-item nav-link {{request()->getRequestUri()==="/contact" ? "active":""}}">Contact</a>
             </div>
-            <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
-                <form action="/search" method="get">
-                    @csrf
+{{--            <div class=" ml-auto mr-3 d-lg-flex gap" style="gap:1rem;">--}}
+{{--                @auth--}}
+{{--                    <div style="display: flex; gap: 1rem; align-items: center; flex-shrink: 1">--}}
+{{--                        <span>Hello {{auth()->user()->name}}!</span>--}}
+{{--                        <a href="/dashboard">Dashboard</a>--}}
+{{--                        <form action="/logout" method="post">--}}
+{{--                            @csrf--}}
+{{--                            <button class="btn btn-link" type="submit">Logout</button>--}}
+{{--                        </form>--}}
+{{--                    </div>--}}
+{{--                @else--}}
+{{--                    <a href="/login">Login</a>--}}
+{{--                    <a href="/register">Register</a>--}}
+{{--                @endauth--}}
+{{--            </div>--}}
+            <form action="/search" method="get">
+                <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
                     <input name="q" type="text" class="form-control border-0" placeholder="Keyword">
-                </form>
-                <div class="input-group-append">
-                    <button class="input-group-text bg-primary text-dark border-0 px-3"><i
-                            class="fa fa-search"></i></button>
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text bg-primary text-dark border-0 px-3"><i
+                                class="fa fa-search"></i></button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </nav>
 </div>
@@ -150,28 +219,39 @@
                         <h4 class="m-0 text-uppercase font-weight-bold">Follow Us</h4>
                     </div>
                     <div class="bg-white border border-top-0 p-3">
-                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #39569E;">
-                            <i class="fab fa-facebook-f text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
+                           style="background: #39569E;">
+                            <i class="fab fa-facebook-f text-center py-4 mr-3"
+                               style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                             <span class="font-weight-medium">12,345 Fans</span>
                         </a>
-                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #52AAF4;">
-                            <i class="fab fa-twitter text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
+                           style="background: #52AAF4;">
+                            <i class="fab fa-twitter text-center py-4 mr-3"
+                               style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                             <span class="font-weight-medium">12,345 Followers</span>
                         </a>
-                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #0185AE;">
-                            <i class="fab fa-linkedin-in text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
+                           style="background: #0185AE;">
+                            <i class="fab fa-linkedin-in text-center py-4 mr-3"
+                               style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                             <span class="font-weight-medium">12,345 Connects</span>
                         </a>
-                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #C8359D;">
-                            <i class="fab fa-instagram text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
+                           style="background: #C8359D;">
+                            <i class="fab fa-instagram text-center py-4 mr-3"
+                               style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                             <span class="font-weight-medium">12,345 Followers</span>
                         </a>
-                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #DC472E;">
-                            <i class="fab fa-youtube text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                        <a href="" class="d-block w-100 text-white text-decoration-none mb-3"
+                           style="background: #DC472E;">
+                            <i class="fab fa-youtube text-center py-4 mr-3"
+                               style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                             <span class="font-weight-medium">12,345 Subscribers</span>
                         </a>
                         <a href="" class="d-block w-100 text-white text-decoration-none" style="background: #055570;">
-                            <i class="fab fa-vimeo-v text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                            <i class="fab fa-vimeo-v text-center py-4 mr-3"
+                               style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                             <span class="font-weight-medium">12,345 Followers</span>
                         </a>
                     </div>
@@ -190,18 +270,18 @@
                 <!-- Ads End -->
 
                 <!-- Popular News Start -->
-{{--                <div class="mb-3">--}}
-{{--                    <div class="section-title mb-0">--}}
-{{--                        <h4 class="m-0 text-uppercase font-weight-bold">Tranding News</h4>--}}
-{{--                    </div>--}}
-{{--                    <div class="bg-white border border-top-0 p-3">--}}
-{{--                        @foreach($trandingPosts as $post)--}}
-{{--                            <x-tranding-post-card :post=$post />--}}
-{{--                        @endforeach--}}
+            {{--                <div class="mb-3">--}}
+            {{--                    <div class="section-title mb-0">--}}
+            {{--                        <h4 class="m-0 text-uppercase font-weight-bold">Tranding News</h4>--}}
+            {{--                    </div>--}}
+            {{--                    <div class="bg-white border border-top-0 p-3">--}}
+            {{--                        @foreach($trandingPosts as $post)--}}
+            {{--                            <x-tranding-post-card :post=$post />--}}
+            {{--                        @endforeach--}}
 
-{{--                    </div>--}}
-{{--                </div>--}}
-                <!-- Popular News End -->
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            <!-- Popular News End -->
 
                 <!-- Newsletter Start -->
                 <div class="mb-3">
@@ -269,14 +349,15 @@
         <div class="col-lg-3 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Popular News</h5>
             @foreach($popularPosts as $post)
-                <x-popular-post-card :post=$post />
+                <x-popular-post-card :post=$post/>
             @endforeach
         </div>
         <div class="col-lg-3 col-md-6 mb-5">
             <h5 class="mb-4 text-white text-uppercase font-weight-bold">Categories</h5>
             <div class="m-n1">
                 @foreach($categories as $category)
-                    <a href="/categories/{{$category->slug}}" class="btn btn-sm btn-secondary m-1 {{ request()->getRequestUri()==="/categories/$category->slug" ?"active":""}}">{{$category->name}}</a>
+                    <a href="/categories/{{$category->slug}}"
+                       class="btn btn-sm btn-secondary m-1 {{ request()->getRequestUri()==="/categories/$category->slug" ?"active":""}}">{{$category->name}}</a>
                 @endforeach
             </div>
         </div>
@@ -317,6 +398,10 @@
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 
+<!-- Flash Message -->
+@if(request()->session()->has("success"))
+    <x-flash-message class="success">{{request()->session()->get("success")}}</x-flash-message>
+@endif
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

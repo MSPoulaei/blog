@@ -35,4 +35,13 @@ class PostRepository
             ->with("category")
             ->get();
     }
+
+    public static function search(string $query)
+    {
+        return Post::query()->
+            where("title","like","%$query%")
+            ->orWhere("body","like","%$query%")
+            ->with("category","author")
+            ->paginate();
+    }
 }

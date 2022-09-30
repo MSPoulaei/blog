@@ -1,7 +1,9 @@
 <?php
 
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -41,3 +43,14 @@ Route::get("/authors/{author:username}",[UserController::class,"authorPosts"]);
 Route::get("/categories/{category:slug}",[CategoryController::class,"posts"])->name("category");
 
 Route::get("/search",[PostController::class,"search"]);
+
+
+Route::get("/login",[AuthController::class,"loginForm"])->middleware("guest")->name("login");
+Route::Post("/login",[AuthController::class,"login"])->middleware("guest");
+
+Route::get("/register",[AuthController::class,"registerForm"])->middleware("guest");
+Route::Post("/register",[AuthController::class,"register"])->middleware("guest");
+
+Route::Post("/logout",[AuthController::class,"logout"])->middleware("auth");
+
+Route::get("/dashboard",[DashboardController::class,"index"])->middleware("admin");

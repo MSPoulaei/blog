@@ -8,7 +8,7 @@
             <div class="mt-auto p-4">
                 <div class="mb-2">
                     <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                       href="">{{ $post->category->name }}</a>
+                       href="/categories/{{$post->category->slug}}">{{ $post->category->name }}</a>
                     <a class="text-body" href=""><small>{{$post->published_at->diffForHumans()}}</small></a>
                 </div>
                 <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="/posts/{{$post->slug}}">{{$post->title}}</a>
