@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -36,6 +37,7 @@ Route::get("/contact", function (Request $request, Response $response) {
 
 //Route::get("/posts",[PostController::class,"index"]);
 Route::get("/posts/{post:slug}",[PostController::class,"post"]);
+Route::post("/posts/{post:slug}/comments",[CommentController::class,"store"]);
 
 
 Route::get("/authors/{author:username}",[UserController::class,"authorPosts"]);
@@ -53,4 +55,6 @@ Route::Post("/register",[AuthController::class,"register"])->middleware("guest")
 
 Route::Post("/logout",[AuthController::class,"logout"])->middleware("auth");
 
-Route::get("/dashboard",[DashboardController::class,"index"])->middleware("admin");
+Route::get("/panel/posts",[PostController::class,"show"])->middleware("admin");
+Route::get("/panel/posts/create",[PostController::class,"create"])->middleware("admin");
+Route::post("/panel/posts/create",[PostController::class,"store"])->middleware("admin");

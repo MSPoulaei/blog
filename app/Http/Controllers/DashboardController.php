@@ -8,6 +8,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        echo "admin";
+        return view("panel.form",["title"=>"Form"]);
     }
 }
