@@ -13,7 +13,7 @@
 
     <!-- News Detail Start -->
     <div class="position-relative mb-3">
-        <img class="img-fluid w-100" src="/img/news-700x435-1.jpg" style="object-fit: cover;">
+        <img class="img-fluid w-100" src="{{$post->thumbnail ? asset("storage/" . $post->thumbnail) : '/img/news-700x435-1.jpg'}}" style="object-fit: cover;">
         <div class="bg-white border border-top-0 p-4">
             <div class="mb-3">
                 <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
@@ -44,7 +44,7 @@
             <h4 class="m-0 text-uppercase font-weight-bold">3 Comments</h4>
         </div>
         <div class="bg-white border border-top-0 p-4">
-            @foreach($post->comments->where('parent_id','NULL')->load("author","subComments") as $comment)
+            @foreach($post->comments->where('parent_id',null)->load("author","subComments") as $comment)
                 <x-comment :comment=$comment :isSub=false/>
             @endforeach
         </div>

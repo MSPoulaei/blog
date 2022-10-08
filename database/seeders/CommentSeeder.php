@@ -14,7 +14,7 @@ class CommentSeeder extends Seeder
      */
     public function run()
     {
-        Comment::factory()->count(100)->create(["parent_id"=>"NULL"]);
+        Comment::factory()->count(100)->create(["parent_id"=>null]);
         Comment::factory()->count(100)->create();
     }
 }

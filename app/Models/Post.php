@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $fillable=["title","slug","description","body","published_at","category_id","user_id"];
+    protected $fillable=["title","slug","description","body","published_at","category_id","user_id","thumbnail"];
     protected $casts = [
         'published_at' => 'datetime',
     ];
