@@ -35,5 +35,10 @@ class ContentServiceProvider extends ServiceProvider
                 "popularPosts"=>PostRepository::getPopular()
            ]);
         });
+        view()->composer("layouts.panel",function ($view){
+           $view->with([
+               "user"=>auth()->user()
+           ]);
+        });
     }
 }

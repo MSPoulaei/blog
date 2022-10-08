@@ -9,6 +9,6 @@ class UserController extends Controller
 {
     public function authorPosts(User $author)
     {
-        return view("category",["posts"=>$author->posts()->with(["author","category"])->paginate(),"title"=>$author->name]);
+        return view("category",["posts"=>$author->posts()->with(["author","category"])->orderby('published_at','DESC')->paginate(),"title"=>$author->name]);
     }
 }

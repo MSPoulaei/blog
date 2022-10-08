@@ -16,7 +16,7 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        $title=$this->faker->realText(20);
+        $title=$this->faker->unique()->text(20);
         $body=$this->faker->realText(500);
         return [
             "title"=>$title,

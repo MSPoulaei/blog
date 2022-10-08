@@ -25,8 +25,8 @@
     <!-- partial:/partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="/index.html"><img src="/assets/images/logo.svg" alt="logo" /></a>
-            <a class="sidebar-brand brand-logo-mini" href="/index.html"><img src="/assets/images/logo-mini.svg" alt="logo" /></a>
+            <a class="sidebar-brand brand-logo" href="/panel/dashboard"><img src="/assets/images/logo.svg" alt="logo" /></a>
+            <a class="sidebar-brand brand-logo-mini" href="/panel/dashboard"><img src="/assets/images/logo-mini.svg" alt="logo" /></a>
         </div>
         <ul class="nav">
             <li class="nav-item profile">
@@ -37,8 +37,8 @@
                             <span class="count bg-success"></span>
                         </div>
                         <div class="profile-name">
-                            <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-                            <span>Gold Member</span>
+                            <h5 class="mb-0 font-weight-normal">{{$user->name}}</h5>
+                            <span>{{ ucwords(strtolower($user->user_role->name))}} Member</span>
                         </div>
                     </div>
                     <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -82,7 +82,7 @@
                 <span class="nav-link">Navigation</span>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" href="/index.html">
+                <a class="nav-link" href="/panel/dashboard">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -90,79 +90,26 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
-              </span>
-                    <span class="menu-title">Basic UI Elements</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="ui-basic">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/buttons.html">Buttons</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/typography.html">Typography</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/pages/forms/basic_elements.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
-              </span>
-                    <span class="menu-title">Form Elements</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/pages/tables/basic-table.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
-              </span>
-                    <span class="menu-title">Tables</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/pages/charts/chartjs.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
-              </span>
-                    <span class="menu-title">Charts</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="/pages/icons/mdi.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-contacts"></i>
-              </span>
-                    <span class="menu-title">Icons</span>
-                </a>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <span class="menu-icon">
-                <i class="mdi mdi-security"></i>
-              </span>
-                    <span class="menu-title">User Pages</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="auth">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/pages/samples/blank-page.html"> Blank Page </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/pages/samples/error-404.html"> 404 </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/pages/samples/error-500.html"> 500 </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/pages/samples/login.html"> Login </a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/pages/samples/register.html"> Register </a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
+                <a class="nav-link" href="/panel/posts">
               <span class="menu-icon">
                 <i class="mdi mdi-file-document-box"></i>
               </span>
-                    <span class="menu-title">Documentation</span>
+                    <span class="menu-title">Posts</span>
                 </a>
             </li>
+
+
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/panel/categories">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+                    <span class="menu-title">Catgories</span>
+                </a>
+            </li>
+
+
+
         </ul>
     </nav>
     <!-- partial -->
@@ -185,44 +132,44 @@
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item dropdown d-none d-lg-block">
-                        <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
+                        <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="#">+ Create New</a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
-                            <h6 class="p-3 mb-0">Projects</h6>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
+{{--                            <h6 class="p-3 mb-0">Projects</h6>--}}
+{{--                            <div class="dropdown-divider"></div>--}}
+                            <a class="dropdown-item preview-item" href="/panel/posts/create">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-dark rounded-circle">
                                         <i class="mdi mdi-file-outline text-primary"></i>
                                     </div>
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Software Development</p>
+                                    <p class="preview-subject ellipsis mb-1">Post</p>
                                 </div>
                             </a>
+{{--                            <div class="dropdown-divider"></div>--}}
+{{--                            <a class="dropdown-item preview-item">--}}
+{{--                                <div class="preview-thumbnail">--}}
+{{--                                    <div class="preview-icon bg-dark rounded-circle">--}}
+{{--                                        <i class="mdi mdi-web text-info"></i>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="preview-item-content">--}}
+{{--                                    <p class="preview-subject ellipsis mb-1">UI Development</p>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
-                                <div class="preview-thumbnail">
-                                    <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-web text-info"></i>
-                                    </div>
-                                </div>
-                                <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">UI Development</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item preview-item">
+                            <a class="dropdown-item preview-item" href="/panel/categories/create">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-dark rounded-circle">
                                         <i class="mdi mdi-layers text-danger"></i>
                                     </div>
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject ellipsis mb-1">Software Testing</p>
+                                    <p class="preview-subject ellipsis mb-1">Category</p>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <p class="p-3 mb-0 text-center">See all projects</p>
+                            <a class="nav-link" href="/panel/posts"><p class="p-3 mb-0 text-center">See all Posts</p></a>
                         </div>
                     </li>
                     <li class="nav-item nav-settings d-none d-lg-block">
@@ -322,7 +269,7 @@
                         <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                             <div class="navbar-profile">
                                 <img class="img-xs rounded-circle" src="/assets/images/faces/face15.jpg" alt="">
-                                <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                                <p class="mb-0 d-none d-sm-block navbar-profile-name">{{$user->name}}</p>
                                 <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                             </div>
                         </a>
@@ -347,7 +294,10 @@
                                     </div>
                                 </div>
                                 <div class="preview-item-content">
-                                    <p class="preview-subject mb-1">Log out</p>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                    <button type="submit" class="btn btn-link text-decoration-none preview-subject mb-1">Log out</button>
+                                    </form>
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
@@ -380,6 +330,45 @@
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
+@if(request()->session()->has("success"))
+    <style>
+        /* The alert message box */
+        .alert {
+            position: fixed;
+            right: 1rem;
+            bottom: 1.5rem;
+            padding: 20px;
+            background-color: #f44336; /* Red */
+            color: white;
+            margin-bottom: 15px;
+            opacity: 1;
+            transition: opacity 0.6s; /* 600ms to fade out */
+            z-index: 100;
+        }
+
+        .alert.success {
+            background-color: #04AA6D;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+    </style>
+    <x-flash-message class="success">{{request()->session()->get("success")}}</x-flash-message>
+@endif
 <!-- plugins:js -->
 <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
 <!-- endinject -->

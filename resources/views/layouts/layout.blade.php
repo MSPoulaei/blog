@@ -59,6 +59,7 @@
             color: black;
         }
     </style>
+
 </head>
 
 <body>
@@ -91,7 +92,9 @@
                         @auth
                             <div style="display: flex; gap: 1rem; align-items: center; flex-shrink: 1">
                                 <span>Hello {{auth()->user()->name}}!</span>
-                                <a href="/dashboard">Dashboard</a>
+                                @if(auth()->user()->user_role===\App\Models\Enums\UserRole::ADMIN)
+                                <a href="/panel/dashboard">Dashboard</a>
+                                @endif
                                 <form action="/logout" method="post">
                                     @csrf
                                     <button class="btn btn-link" type="submit">Logout</button>

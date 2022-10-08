@@ -20,7 +20,7 @@ class PostRepository
     public static function getPopular()
     {
         return Post::query()
-            ->orderBy("published_at")
+            ->orderBy("published_at",'DESC')
             ->orderBy("view")
             ->limit(5)
             ->with("category")
@@ -29,7 +29,7 @@ class PostRepository
     public static function getHeader()
     {
         return Post::query()
-            ->orderBy("published_at")
+            ->orderBy("published_at",'DESC')
             ->orderBy("view")
             ->limit(7)
             ->with("category")
@@ -42,6 +42,7 @@ class PostRepository
             where("title","like","%$query%")
             ->orWhere("body","like","%$query%")
             ->with("category","author")
+            ->orderby('published_at','DESC')
             ->paginate();
     }
 }

@@ -55,6 +55,13 @@ Route::Post("/register",[AuthController::class,"register"])->middleware("guest")
 
 Route::Post("/logout",[AuthController::class,"logout"])->middleware("auth");
 
+Route::get("/panel/dashboard",[DashboardController::class,"index"])->middleware("admin");
 Route::get("/panel/posts",[PostController::class,"show"])->middleware("admin");
 Route::get("/panel/posts/create",[PostController::class,"create"])->middleware("admin");
 Route::post("/panel/posts/create",[PostController::class,"store"])->middleware("admin");
+
+Route::get("/panel/posts/{post:slug}/edit",[PostController::class,"edit"])->middleware("admin");
+
+Route::post("/panel/posts/{slug}",[PostController::class,"restore"])->middleware("admin");
+Route::patch("/panel/posts/{slug}",[PostController::class,"update"])->middleware("admin");
+Route::delete("/panel/posts/{post:slug}",[PostController::class,"delete"])->middleware("admin");
