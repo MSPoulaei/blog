@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view("posts", ["posts" => Post::with("category", "author")->orderby('published_at', 'DESC')->paginate(),
+        return view("posts", ["posts" => Post::with("category", "author")->withCount("comments")->orderby('published_at', 'DESC')->paginate(),
             "headerPosts" => PostRepository::getHeader()
         ]);
     }

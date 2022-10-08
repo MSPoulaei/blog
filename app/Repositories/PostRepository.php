@@ -42,6 +42,7 @@ class PostRepository
             where("title","like","%$query%")
             ->orWhere("body","like","%$query%")
             ->with("category","author")
+            ->withCount("comments")
             ->orderby('published_at','DESC')
             ->paginate();
     }

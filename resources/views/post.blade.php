@@ -32,25 +32,11 @@
             </a>
             <div class="d-flex align-items-center">
                 <span class="ml-3"><i class="far fa-eye mr-2"></i>{{$post->view}}</span>
-                <span class="ml-3"><i class="far fa-comment mr-2"></i>123</span>
+                <span class="ml-3"><i class="far fa-comment mr-2"></i>{{$post->comments->count()}}</span>
             </div>
         </div>
     </div>
     <!-- News Detail End -->
-
-    <!-- Comment List Start -->
-    <div class="mb-3">
-        <div class="section-title mb-0">
-            <h4 class="m-0 text-uppercase font-weight-bold">3 Comments</h4>
-        </div>
-        <div class="bg-white border border-top-0 p-4">
-            @foreach($post->comments->where('parent_id',null)->load("author","subComments") as $comment)
-                <x-comment :comment=$comment :isSub=false/>
-            @endforeach
-        </div>
-    </div>
-    <!-- Comment List End -->
-
 
     <!-- Comment Form Start -->
     <div class="mb-3" id="commentSection">
@@ -67,7 +53,7 @@
                         <input type="hidden" name="parent_id" id="parentIdInput">
                     </div>
                     @error("body")
-                    <div class="invalid-feedback">
+                    <div class="text-danger mb-4">
                         {{$message}}
                     </div>
                     @enderror
@@ -82,6 +68,24 @@
         </div>
     </div>
     <!-- Comment Form End -->
+
+    <!-- Comment List Start -->
+    <div class="mb-3">
+        <div class="section-title mb-0">
+            <h4 class="m-0 text-uppercase font-weight-bold">{{$post->comments->count()}} Comments</h4>
+        </div>
+        <div class="bg-white border border-top-0 p-4">
+            @if($post->comments->count()>0)
+            @foreach($post->comments->where('parent_id',null)->load("author","subComments") as $comment)
+                <x-comment :comment=$comment :isSub=false/>
+            @endforeach
+            @else
+                <p>Be the first one to post a comment!</p>
+            @endif
+        </div>
+    </div>
+    <!-- Comment List End -->
+
 
 
     {{--        <div style="margin: 0 auto;display: flex;flex-direction: column;padding: 0 2rem">--}}

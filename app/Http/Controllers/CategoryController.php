@@ -9,6 +9,6 @@ class CategoryController extends Controller
 {
     public function posts(Category $category)
     {
-        return view("category",["posts"=>$category->posts()->with("category")->orderby('published_at','DESC')->paginate(),"title"=>$category->name]);
+        return view("category",["posts"=>$category->posts()->with(["category","author"])->withCount("comments")->orderby('published_at','DESC')->paginate(),"title"=>$category->name]);
     }
 }

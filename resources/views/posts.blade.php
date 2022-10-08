@@ -6,11 +6,11 @@
 @section("title", $title ?? "Posts")
 
 @section("top-header")
-    <x-main-news-slider  />
+    <x-main-news-slider :posts=$headerPosts />
 
-    <x-breaking-news />
+    <x-breaking-news :posts=$headerPosts />
 
-    <x-featured-news />
+    <x-featured-news :posts=$headerPosts />
 @endsection
 
 @section("content")
