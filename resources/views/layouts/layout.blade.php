@@ -93,7 +93,7 @@
                             <div style="display: flex; gap: 1rem; align-items: center; flex-shrink: 1">
                                 <span>Hello {{auth()->user()->name}}!</span>
                                 @if(auth()->user()->user_role===\App\Models\Enums\UserRole::ADMIN)
-                                <a href="/panel/dashboard">Dashboard</a>
+                                    <a href="/panel/dashboard">Dashboard</a>
                                 @endif
                                 <form action="/logout" method="post">
                                     @csrf
@@ -105,24 +105,24 @@
                             <a href="/register">Register</a>
                         @endauth
                     </div>
-{{--                    <li class="nav-item">--}}
-{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-twitter"></small></a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-facebook-f"></small></a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-linkedin-in"></small></a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-instagram"></small></a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-google-plus-g"></small></a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item">--}}
-{{--                        <a class="nav-link text-body" href="#"><small class="fab fa-youtube"></small></a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a class="nav-link text-body" href="#"><small class="fab fa-twitter"></small></a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a class="nav-link text-body" href="#"><small class="fab fa-facebook-f"></small></a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a class="nav-link text-body" href="#"><small class="fab fa-linkedin-in"></small></a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a class="nav-link text-body" href="#"><small class="fab fa-instagram"></small></a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a class="nav-link text-body" href="#"><small class="fab fa-google-plus-g"></small></a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a class="nav-link text-body" href="#"><small class="fab fa-youtube"></small></a>--}}
+                    {{--                    </li>--}}
                 </ul>
             </nav>
         </div>
@@ -174,21 +174,21 @@
                 </div>
                 <a href="/contact" class="nav-item nav-link {{request()->getRequestUri()==="/contact" ? "active":""}}">Contact</a>
             </div>
-{{--            <div class=" ml-auto mr-3 d-lg-flex gap" style="gap:1rem;">--}}
-{{--                @auth--}}
-{{--                    <div style="display: flex; gap: 1rem; align-items: center; flex-shrink: 1">--}}
-{{--                        <span>Hello {{auth()->user()->name}}!</span>--}}
-{{--                        <a href="/dashboard">Dashboard</a>--}}
-{{--                        <form action="/logout" method="post">--}}
-{{--                            @csrf--}}
-{{--                            <button class="btn btn-link" type="submit">Logout</button>--}}
-{{--                        </form>--}}
-{{--                    </div>--}}
-{{--                @else--}}
-{{--                    <a href="/login">Login</a>--}}
-{{--                    <a href="/register">Register</a>--}}
-{{--                @endauth--}}
-{{--            </div>--}}
+            {{--            <div class=" ml-auto mr-3 d-lg-flex gap" style="gap:1rem;">--}}
+            {{--                @auth--}}
+            {{--                    <div style="display: flex; gap: 1rem; align-items: center; flex-shrink: 1">--}}
+            {{--                        <span>Hello {{auth()->user()->name}}!</span>--}}
+            {{--                        <a href="/dashboard">Dashboard</a>--}}
+            {{--                        <form action="/logout" method="post">--}}
+            {{--                            @csrf--}}
+            {{--                            <button class="btn btn-link" type="submit">Logout</button>--}}
+            {{--                        </form>--}}
+            {{--                    </div>--}}
+            {{--                @else--}}
+            {{--                    <a href="/login">Login</a>--}}
+            {{--                    <a href="/register">Register</a>--}}
+            {{--                @endauth--}}
+            {{--            </div>--}}
             <form action="/search" method="get">
                 <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
                     <input name="q" type="text" class="form-control border-0" placeholder="Keyword">
@@ -273,35 +273,43 @@
                 <!-- Ads End -->
 
                 <!-- Popular News Start -->
-            {{--                <div class="mb-3">--}}
-            {{--                    <div class="section-title mb-0">--}}
-            {{--                        <h4 class="m-0 text-uppercase font-weight-bold">Tranding News</h4>--}}
-            {{--                    </div>--}}
-            {{--                    <div class="bg-white border border-top-0 p-3">--}}
-            {{--                        @foreach($trandingPosts as $post)--}}
-            {{--                            <x-tranding-post-card :post=$post />--}}
-            {{--                        @endforeach--}}
+                {{--                <div class="mb-3">--}}
+                {{--                    <div class="section-title mb-0">--}}
+                {{--                        <h4 class="m-0 text-uppercase font-weight-bold">Tranding News</h4>--}}
+                {{--                    </div>--}}
+                {{--                    <div class="bg-white border border-top-0 p-3">--}}
+                {{--                        @foreach($trandingPosts as $post)--}}
+                {{--                            <x-tranding-post-card :post=$post />--}}
+                {{--                        @endforeach--}}
 
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            <!-- Popular News End -->
+                {{--                    </div>--}}
+                {{--                </div>--}}
+                <!-- Popular News End -->
 
                 <!-- Newsletter Start -->
-                <div class="mb-3">
-                    <div class="section-title mb-0">
-                        <h4 class="m-0 text-uppercase font-weight-bold">Newsletter</h4>
-                    </div>
-                    <div class="bg-white text-center border border-top-0 p-3">
-                        <p>Aliqu justo et labore at eirmod justo sea erat diam dolor diam vero kasd</p>
-                        <div class="input-group mb-2" style="width: 100%;">
-                            <input type="text" class="form-control form-control-lg" placeholder="Your Email">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary font-weight-bold px-3">Sign Up</button>
-                            </div>
+                <form action="/newsletter" method="post">
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Newsletter</h4>
                         </div>
-                        <small>Lorem ipsum dolor sit amet elit</small>
+                        <div class="bg-white text-center border border-top-0 p-3">
+                            <p>Aliqu justo et labore at eirmod justo sea erat diam dolor diam vero kasd</p>
+                            <div class="input-group mb-2" style="width: 100%;">
+                                @csrf
+                                <input type="text" name="email" class="form-control form-control-lg" placeholder="Your Email">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary font-weight-bold px-3">Sign Up</button>
+                                </div>
+                            </div>
+                                @error("email")
+                                <div class="text-danger">
+                                    {{$message}}
+                                </div>
+                                @enderror
+                            <small>Lorem ipsum dolor sit amet elit</small>
+                        </div>
                     </div>
-                </div>
+                </form>
                 <!-- Newsletter End -->
 
                 <!-- Tags Start -->

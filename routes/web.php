@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -65,3 +66,10 @@ Route::get("/panel/posts/{post:slug}/edit",[PostController::class,"edit"])->midd
 Route::post("/panel/posts/{slug}",[PostController::class,"restore"])->middleware("admin");
 Route::patch("/panel/posts/{slug}",[PostController::class,"update"])->middleware("admin");
 Route::delete("/panel/posts/{post:slug}",[PostController::class,"delete"])->middleware("admin");
+
+
+Route::post("/newsletter",[NewsletterController::class,"store"]);
+
+Route::get("/panel/newsletter",[NewsletterController::class,"create"])->middleware("admin");
+Route::post("/panel/newsletter",[NewsletterController::class,"send"])->middleware("admin");
+

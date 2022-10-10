@@ -107,6 +107,14 @@
                     <span class="menu-title">Catgories</span>
                 </a>
             </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="/panel/newsletter">
+              <span class="menu-icon">
+                <i class="mdi mdi-email-outline"></i>
+              </span>
+                    <span class="menu-title">Newsletter</span>
+                </a>
+            </li>
 
 
 
