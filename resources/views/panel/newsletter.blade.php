@@ -26,7 +26,7 @@
                     </div>
                     @enderror
                     </div>
-                    <button type="submit" class="btn btn-success me-2">Post</button>
+                    <button type="submit" class="btn btn-success me-2">Send</button>
 {{--                    <a href="/panel/das"><button type="button" class="btn btn-dark">Go Back</button></a>--}}
                 </form>
             </div>
