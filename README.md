@@ -4,9 +4,9 @@
 
 2. cd into the project folder
 
-3. copy .env.example to .env
+3. run `cp .env.example .env`
 
-4. config database and email in .env file
+4. config database and email credentials in .env file
 
 5. run `composer install`
 
