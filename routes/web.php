@@ -73,3 +73,15 @@ Route::post("/newsletter",[NewsletterController::class,"store"]);
 Route::get("/panel/newsletter",[NewsletterController::class,"create"])->middleware("admin");
 Route::post("/panel/newsletter",[NewsletterController::class,"send"])->middleware("admin");
 
+
+
+Route::get("/panel/categories",[CategoryController::class,"show"])->middleware("admin");
+Route::get("/panel/categories/create",[CategoryController::class,"create"])->middleware("admin");
+Route::post("/panel/categories/create",[CategoryController::class,"store"])->middleware("admin");
+
+Route::get("/panel/categories/{category:slug}/edit",[CategoryController::class,"edit"])->middleware("admin");
+
+Route::post("/panel/categories/{slug}",[CategoryController::class,"restore"])->middleware("admin");
+Route::patch("/panel/categories/{slug}",[CategoryController::class,"update"])->middleware("admin");
+Route::delete("/panel/categories/{category:slug}",[CategoryController::class,"delete"])->middleware("admin");
+
